@@ -5,6 +5,7 @@
 #ifndef STRINGSEARCHCOMPARISON_KNUTHMORRISPRATT_H
 #define STRINGSEARCHCOMPARISON_KNUTHMORRISPRATT_H
 
+#include "../Utils/utilities.h"
 
 class KnuthMorrisPratt {
 

@@ -1,5 +1,9 @@
 #include <iostream>
 
+#include "Utils/utilities.h"
+#include "BM/BoyerMoore.h"
+#include "KMP/KnuthMorrisPratt.h"
+
 int main() {
     // print "CMP201 String Search Algorithm Comparison by Isaac Basque-Rice"
     // print "Boyer-Moore vs Knuth-Morris-Pratt

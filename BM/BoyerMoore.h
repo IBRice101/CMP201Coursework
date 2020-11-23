@@ -5,6 +5,7 @@
 #ifndef STRINGSEARCHCOMPARISON_BOYERMOORE_H
 #define STRINGSEARCHCOMPARISON_BOYERMOORE_H
 
+#include "../Utils/utilities.h"
 
 class BoyerMoore {
 
