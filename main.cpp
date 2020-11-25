@@ -5,7 +5,7 @@
 #include "BM/BoyerMoore.h"
 #include "KMP/KnuthMorrisPratt.h"
 
-std::string fileOpen(std::string file) {
+std::string fileOpen(const std::string& file) {
     std::string text;
     std::ifstream readFile(file);
 
