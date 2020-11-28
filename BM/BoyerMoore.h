@@ -8,7 +8,7 @@
 #include "../Utils/utilities.h"
 
 class BoyerMoore {
-
+	std::string StringSearch(std::string needle, std::string haystack);
 };
 
 

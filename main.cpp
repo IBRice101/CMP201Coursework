@@ -57,6 +57,12 @@ int main() {
     std::cout << "What string would you like to search for?" << std::endl;
     std::cin >> needle;
 
+    if (!haystackLocation.empty()) {
+        std::cout << "Searching for \"" << needle << "\" in " << haystackLocation << std::endl;
+    } else {
+        std::cout << "Searching for \"" << needle << "\" in " << haystack << std::endl;
+    }
+
     std::cout << "Boyer-Moore: " << std::endl;
     // BoyerMoore(needle, haystack)
     // measure time taken in ms
