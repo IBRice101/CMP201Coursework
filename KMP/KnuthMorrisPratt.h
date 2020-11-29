@@ -8,6 +8,9 @@
 #include "../Utils/utilities.h"
 
 class KnuthMorrisPratt {
+	int table[256];
+
+	void TableGen();
 	int StringSearch(std::string needle, std::string haystack);
 };
 
