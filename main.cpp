@@ -5,6 +5,9 @@
 #include "BM/BoyerMoore.h"
 #include "KMP/KnuthMorrisPratt.h"
 
+BoyerMoore BM;
+KnuthMorrisPratt KMP;
+
 std::string fileOpen(const std::string& file) {
     std::string text;
     std::ifstream readFile(file);
@@ -63,6 +66,9 @@ int main() {
         std::cout << "Searching for \"" << needle << "\" in " << haystack << std::endl;
     }
 
+    int timeBM = 0;
+    int timeKMP = 0;
+
     std::cout << "Boyer-Moore: " << std::endl;
     // BoyerMoore(needle, haystack)
     // measure time taken in ms
@@ -71,10 +77,10 @@ int main() {
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
     std::cout << "Knuth-Morris-Pratt" <<std::endl;
-    // KnuthMorrisPratt(needle, haystack)
+    KMP.StringSearch(needle, haystack);
+    std::cout << "Pattern \"" << needle << "\" found at position " << KMP.pos;
     // measure time taken in ms
     // put value in int timeKMP
-    // print "Pattern \"" + needle + "\" found at position " KnuthMorrisPratt.pos
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
     // print: "BM" + \tab + ":" + \tab + "KMP"

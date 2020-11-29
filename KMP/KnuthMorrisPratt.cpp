@@ -10,12 +10,9 @@
 // Best used for text with small alphabets, like DNA, does not rely on alphabet size in quite the same way as BM
 
 #include <iostream>
+#include <vector>
+
 #include "KnuthMorrisPratt.h"
-
-char table[256]; // table of ASCII values, filled in TableGen();
-
-// todo: add a vector of integers called pos (for positions in haystack at which needle is found)
-int numPos = 0;
 
 void KnuthMorrisPratt::TableGen() {
 	for (int i = 0; i < 255; ++i) {
@@ -26,13 +23,15 @@ void KnuthMorrisPratt::TableGen() {
 int KnuthMorrisPratt::StringSearch(std::string needle, std::string haystack) {
 	int hayPos = 0; // position of current character in haystack
 	int needPos = 0; // position of current character in needle
+	TableGen();
 
 	do {
 		if (needle[needPos] == haystack[hayPos]) {
 			hayPos++;
 			needPos++;
 			if (needPos == needle.length()) {
-				// pos<numPos> = hayPos - needPos, numPos++
+			    pos[numPos] = hayPos - needPos;
+			    numPos++;
 				if (table[needle.length()] <= -1) {
 					std::cout << "Error" << std::endl;
 				} else {
@@ -47,4 +46,8 @@ int KnuthMorrisPratt::StringSearch(std::string needle, std::string haystack) {
 			}
 		}
 	}while (hayPos < haystack.length());
+
+	std::cout << "Found " << needle << " in " << numPos << " positions" << std::endl;
+
+    return numPos;
 }
