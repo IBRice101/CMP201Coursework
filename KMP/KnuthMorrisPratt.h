@@ -16,6 +16,7 @@ public:
 
 	void TableGen();
 	int StringSearch(std::string needle, std::string haystack);
+
 };
 
 

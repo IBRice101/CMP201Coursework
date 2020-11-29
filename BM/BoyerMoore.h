@@ -8,6 +8,7 @@
 #include "../Utils/utilities.h"
 
 class BoyerMoore {
+public:
 	int StringSearch(std::string needle, std::string haystack);
 };
 

@@ -70,7 +70,7 @@ int main() {
     int timeKMP = 0;
 
     std::cout << "Boyer-Moore: " << std::endl;
-    // BoyerMoore(needle, haystack)
+    BM.StringSearch(needle, haystack);
     // measure time taken in ms
     // put value in int timeBM
     // print "Pattern \"" + needle + "\" found at position " BoyerMoore.pos
@@ -78,11 +78,11 @@ int main() {
 
     std::cout << "Knuth-Morris-Pratt" <<std::endl;
     KMP.StringSearch(needle, haystack);
-    std::cout << "Pattern \"" << needle << "\" found at position " << KMP.pos;
     // measure time taken in ms
     // put value in int timeKMP
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
-    // print: "BM" + \tab + ":" + \tab + "KMP"
+    std::cout << "BM \t : \t KMP" << std::endl;
     // print: timeBM + "ms" + \tab + ":" + \tab + timeKMP + "ms"
+    std::cout << timeBM << "ms \t : \t" << timeKMP << "ms" << std::endl;
 }
