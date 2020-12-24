@@ -10,6 +10,8 @@ KnuthMorrisPratt KMP;
 
 std::string fileOpen(const std::string& file) {
     std::string text;
+    text = nullptr;
+
     std::ifstream readFile(file);
 
     getline(readFile, text);
@@ -26,6 +28,7 @@ int main() {
     std::string needle; // pattern
     std::string haystack; // searched text
     std::string haystackLocation; // location of searched text if in a txt file
+    haystackLocation = nullptr;
 
     char answer; // y or n, will assume y if no input
     bool fileInput; // if true user will define which text file they would like to search
