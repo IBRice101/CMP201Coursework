@@ -8,6 +8,7 @@
 // Space: O(m)
 
 // Best used for text with small alphabets, like DNA, does not rely on alphabet size in quite the same way as BM
+// Based on pseudocode from https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm
 
 #include <iostream>
 #include <vector>
@@ -21,31 +22,31 @@ void KnuthMorrisPratt::TableGen() {
 }
 
 int KnuthMorrisPratt::StringSearch(std::string needle, std::string haystack) {
-	int hayPos = 0; // position of current character in haystack
-	int needPos = 0; // position of current character in needle
+	int haystackPos = 0; // position of current character in haystack
+	int needlePos = 0; // position of current character in needle
 	TableGen();
 
 	do {
-		if (needle[needPos] == haystack[hayPos]) {
-			hayPos++;
-			needPos++;
-			if (needPos == needle.length()) {
-			    pos[numPos] = hayPos - needPos;
+		if (needle[needlePos] == haystack[haystackPos]) {
+			haystackPos++;
+			needlePos++;
+			if (needlePos == needle.length()) {
+			    pos[numPos] = haystackPos - needlePos;
 			    numPos++;
 				if (table[needle.length()] <= -1) {
 					std::cout << "Error" << std::endl;
 				} else {
-					needPos = table[needPos];
+                    needlePos = table[needlePos];
 				}
 			}
 		} else {
-			needPos = table[needPos];
-			if (needPos < 0) {
-				hayPos++;
-				needPos++;
+            needlePos = table[needlePos];
+			if (needlePos < 0) {
+				haystackPos++;
+				needlePos++;
 			}
 		}
-	}while (hayPos < haystack.length());
+	}while (haystackPos < haystack.length());
 
 	std::cout << "Found " << needle << " in " << numPos << " positions" << std::endl;
 
