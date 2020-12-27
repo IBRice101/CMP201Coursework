@@ -3,10 +3,10 @@
 
 #include "Utils/utilities.h"
 #include "BM/BoyerMoore.h"
-#include "KMP/KnuthMorrisPratt.h"
+#include "RK/RabinKarp.h"
 
 BoyerMoore BM;
-KnuthMorrisPratt KMP;
+RabinKarp RK;
 
 std::string fileOpen(const std::string& file) {
     std::string text;
@@ -80,12 +80,12 @@ int main() {
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
     std::cout << "Knuth-Morris-Pratt" <<std::endl;
-    KMP.StringSearch(needle, haystack);
+    RK.StringSearch(needle, haystack);
     // measure time taken in ms
     // put value in int timeKMP
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
-    std::cout << "BM \t : \t KMP" << std::endl;
+    std::cout << "BM \t : \t RK" << std::endl;
     // print: timeBM + "ms" + \tab + ":" + \tab + timeKMP + "ms"
     std::cout << timeBM << "ms \t : \t" << timeKMP << "ms" << std::endl;
 }
