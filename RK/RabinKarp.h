@@ -8,7 +8,7 @@
 
 class RabinKarp {
 public:
-    int StringSearch(std::string needle, std::string haystack);
+    int StringSearch(std::string needle, std::string haystack, int prime);
 };
 
 

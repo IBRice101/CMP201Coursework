@@ -16,23 +16,23 @@ haystack is a larger bit of text that may contain needle
 Input: needle, haystack
 
 Begin
-   nLen is set to needle Length
-   hLen is set to haystack Length
-   nHash is set to 0 and hHash is set to 0, haystack is set to 1
-   maxChar is set to total number of characters in character set
+   nLen := needle Length
+   hLen := haystack Length
+   nHash := 0 and hHash := 0, hash := 1
+   maxChar := total number of characters in character set
 
    for index i of all character in pattern, do
-      haystack is set to (haystack*maxChar) mod prime
+      hash := (hash*maxChar) mod prime
    done
 
    for all character index i of pattern, do
-      nHash is set to (maxChar*nHash + pattern[i]) mod prime
-      hHash is set to (maxChar*hHash + text[i]) mod prime
+      nHash := (maxChar*nHash + pattern[i]) mod prime
+      hHash := (maxChar*hHash + text[i]) mod prime
    done
 
-   for i is set to 0 to (hLen - nLen), do
+   for i := 0 to (hLen - nLen), do
       if nHash = hHash, then
-         for charIndex is set to 0 to nLen -1, do
+         for charIndex := 0 to nLen -1, do
             if text[i+charIndex] ≠ pattern[charIndex], then
                break the loop
          done
@@ -40,8 +40,8 @@ Begin
          if charIndex = nLen, then
             print the location i as pattern found at i position.
       if i < (hLen - nLen), then
-         hHash is set to (maxChar*(hHash – text[i]*haystack)+text[i+nLen]) mod prime, then
+         hHash := (maxChar*(hHash – text[i]*hash)+text[i+nLen]) mod prime, then
       if hHash < 0, then
-         hHash is set to hHash + prime
+         hHash := hHash + prime
    done
 End

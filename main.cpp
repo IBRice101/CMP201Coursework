@@ -23,7 +23,7 @@ std::string fileOpen(const std::string& file) {
 
 int main() {
     std::cout << "CMP 201 String Search Algorithm Comparison - 2020/1 Isaac Basque-Rice" << std::endl;
-    std::cout << "Boyer-Moore vs Knuth-Morris-Pratt" << std::endl;
+    std::cout << "Boyer-Moore vs Rabin-Karp" << std::endl;
 
     std::string needle; // pattern
     std::string haystack; // searched text
@@ -70,7 +70,7 @@ int main() {
     }
 
     int timeBM = 0;
-    int timeKMP = 0;
+    int timeRK = 0;
 
     std::cout << "Boyer-Moore: " << std::endl;
     BM.StringSearch(needle, haystack);
@@ -79,13 +79,13 @@ int main() {
     // print "Pattern \"" + needle + "\" found at position " BoyerMoore.pos
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
-    std::cout << "Knuth-Morris-Pratt" <<std::endl;
-    RK.StringSearch(needle, haystack);
+    std::cout << "Rabin-Karp" <<std::endl;
+    RK.StringSearch(needle, haystack, 26431); //prime chosen at random from online generator
     // measure time taken in ms
-    // put value in int timeKMP
+    // put value in int timeRK
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
     std::cout << "BM \t : \t RK" << std::endl;
-    // print: timeBM + "ms" + \tab + ":" + \tab + timeKMP + "ms"
-    std::cout << timeBM << "ms \t : \t" << timeKMP << "ms" << std::endl;
+    // print: timeBM + "ms" + \tab + ":" + \tab + timeRK + "ms"
+    std::cout << timeBM << "ms \t : \t" << timeRK << "ms" << std::endl;
 }
