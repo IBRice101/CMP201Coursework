@@ -80,7 +80,7 @@ int main() {
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
     std::cout << "Rabin-Karp" <<std::endl;
-    RK.StringSearch(needle, haystack, 26431); //prime chosen at random from online generator
+    RK.StringSearch(needle, haystack); //prime chosen at random from online generator
     // measure time taken in ms
     // put value in int timeRK
     // Display diagram showing this (like the one adam wrote, found in Utils)

@@ -1,7 +1,7 @@
 Explanation:
 RK Uses hashing
     Hashing takes a chunk of data and returns an int
-RK Hashes the pattern (needle) and then computes the corresponding section of the text (haystack)
+RK Hashes the needle (needle) and then computes the corresponding section of the haystack (haystack)
 if needleHash == haystackHash, match
 
 can be sped up by reusing the hash of previously calculated strings
@@ -10,8 +10,8 @@ can be sped up by reusing the hash of previously calculated strings
 
 Pseudocode:
 
-needle is any arbitrary bit of text
-haystack is a larger bit of text that may contain needle
+needle is any arbitrary bit of haystack
+haystack is a larger bit of haystack that may contain needle
 
 Input: needle, haystack
 
@@ -21,26 +21,26 @@ Begin
    nHash := 0 and hHash := 0, hash := 1
    maxChar := total number of characters in character set
 
-   for index i of all character in pattern, do
+   for index i of all character in needle, do
       hash := (hash*maxChar) mod prime
    done
 
-   for all character index i of pattern, do
-      nHash := (maxChar*nHash + pattern[i]) mod prime
-      hHash := (maxChar*hHash + text[i]) mod prime
+   for all character index i of needle, do
+      nHash := (maxChar*nHash + needle[i]) mod prime
+      hHash := (maxChar*hHash + haystack[i]) mod prime
    done
 
    for i := 0 to (hLen - nLen), do
       if nHash = hHash, then
-         for charIndex := 0 to nLen -1, do
-            if text[i+charIndex] ≠ pattern[charIndex], then
+         for j := 0 to nLen -1, do
+            if haystack[i+j] ≠ needle[j], then
                break the loop
          done
 
-         if charIndex = nLen, then
-            print the location i as pattern found at i position.
+         if j = nLen, then
+            print the location i as needle found at i position.
       if i < (hLen - nLen), then
-         hHash := (maxChar*(hHash – text[i]*hash)+text[i+nLen]) mod prime, then
+         hHash := (maxChar*(hHash – haystack[i]*hash)+haystack[i+nLen]) mod prime, then
       if hHash < 0, then
          hHash := hHash + prime
    done
