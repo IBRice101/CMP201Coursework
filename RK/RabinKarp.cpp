@@ -13,6 +13,7 @@ void RabinKarp::StringSearch(const std::string& needle, const std::string& hayst
 
     int needleLen = needle.length();
     int haystackLen = haystack.length();
+    int charIndex = 0;
     int needleHash = 0; int haystackHash = 0; int hash = 0;
 
     for (int i = 0; i < needleLen - 1; ++i) {
@@ -26,19 +27,17 @@ void RabinKarp::StringSearch(const std::string& needle, const std::string& hayst
 
     for (int i = 0; i < (haystackLen - needleLen); ++i) {
         if (needleHash == haystackHash) {
-            for (int j = 0; j < needleLen - 1; ++j) {
-                if (haystack[i + j] != needle[j]) {
+            for (charIndex = 0; charIndex < needleLen - 1; ++charIndex) {
+                if (haystack[i + charIndex] != needle[charIndex]) {
                     break;
                 }
-                if (j == needleLen) {
-                    std::cout << "Pattern found at index: " << i << std::endl;
-                }
-
-                return;
             }
-            if (i < (haystackLen - needleLen)) {
-                haystackHash = (a * (haystackHash - haystack[i] * hash) + haystack[i + needleLen]) % prime;
+            if (charIndex == needleLen) {
+                std::cout << "Pattern found at index: " << i << std::endl;
             }
+        }
+        if (i < (haystackLen - needleLen)) {
+            haystackHash = (a * (haystackHash - haystack[i] * hash) + haystack[i + needleLen]) % prime;
             if (haystackHash < 0) {
                 haystackHash = haystackHash + prime;
             }
