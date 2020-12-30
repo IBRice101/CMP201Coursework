@@ -9,7 +9,7 @@
 class RabinKarp {
 public:
 
-    bool found; // returns true if text is found
+    int found = 0; // incremented if text is found
     int timeTaken; // the amount of time (in ms) the algorithm took
     int prime = 127; //for hash function
     #define a 256 // macro for ASCII charset

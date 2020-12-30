@@ -38,6 +38,7 @@ void RabinKarp::StringSearch(const std::string& needle, const std::string& hayst
             }
             if (charIndex == needleLen) {
                 std::cout << "Pattern found at index: " << i << std::endl;
+                found++;
             }
         }
         if (i < (haystackLen - needleLen)) {
