@@ -10,7 +10,6 @@
 class BoyerMoore {
 public:
     int found = 0; // incremented if text is found
-    int timeTaken; // the amount of time (in ms) the algorithm took
     #define a 256 // macro for ASCII charset
 
 	int StringSearch(std::string needle, std::string haystack);
