@@ -72,9 +72,6 @@ int main() {
         std::cout << "Searching for \"" << needle << "\" in " << haystack << std::endl;
     }
 
-    int timeBM = 0;
-    int timeRK = 0;
-
     std::cout << "Boyer-Moore: " << std::endl;
 
     auto BMStart = high_resolution_clock::now();
@@ -92,7 +89,7 @@ int main() {
     auto RKStop = high_resolution_clock::now();
 
     auto RKDuration = duration_cast<milliseconds>(RKStop - RKStart);
-    // print "Pattern \"" + needle + "\" found at positions " BoyerMoore.pos
+    // print "Pattern \"" + needle + "\" found at positions " RabinKarp.pos
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
     std::cout << "BM \t : \t RK" << std::endl;

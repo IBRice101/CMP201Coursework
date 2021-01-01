@@ -1,23 +1,72 @@
-start at beginning of string
-start at beginning of match
-while not at the end of the string:
-	if match_position is 0:
-		Jump ahead m characters
-		Look at character, jump back based on table 1
-		If match the first character:
-			advance match position
-		advance string position
-	else if I match:
-		if I reached the end of the match:
-		FOUND MATCH - return
-		else:
-			advance string position and match position.
-	else:
-		pos1 = table1[ character I failed to match ]
-		pos2 = table2[ how far into the match I am ]
-		if pos1 < pos2:
-			jump back pos1 in string
-			set match position at beginning
-		else:
-			set match position to pos2
-FAILED TO MATCH
+function fullSuffixMatch(shiftArray, borderArray, needle)
+
+Input − Array to store shift locations, the border array and the needle to search.
+
+Output − Fill the shift array and the border array.
+
+Begin
+   n := needle length
+   i := n
+   j := n+1
+   borderArray[i] := j
+
+   while i > 0, do
+      while j <= n AND needle[i-1] ≠ needle[j-1], do
+         if shiftArray[j] = 0, then
+            shiftArray[j] := j-i;
+         j := borderArray[j];
+      done
+
+      decrease i and j by 1
+      borderArray[i] := j
+   done
+End
+
+function partialSuffixMatch(shiftArray, borderArray, needle)
+
+Input− Array to store shift locations, the border array and the needle to search.
+
+Output − Fill the shift array and the border array.
+
+Begin
+   n := needle length
+   j := borderArray[0]
+
+   for index of all characters ‘i’ of needle, do
+      if shiftArray[i] = 0, then
+         shiftArray[i] := j
+      if i = j then
+         j := borderArray[j]
+   done
+End
+
+searchPattern(haystack, needle)
+Input: The main haystack and the needle, that will be searched
+
+Output − The indexes where the needle is found
+
+Begin
+   needleLen := needle length
+   haystackLen := haystack size
+
+   for all entries of shiftArray, do
+      set all entries to 0
+   done
+
+   call fullSuffixMatch(shiftArray, borderArray, needle)
+   call partialSuffixMatch(shiftArray, borderArray, needle)
+   shift := 0
+
+   while shift <= (haystackLen - needleLen), do
+      j := needleLen -1
+      while j >= 0 and needle[j] = haystack[shift + j], do
+         decrease j by 1
+      done
+
+      if j < 0, then
+         print the shift as, there is a match
+         shift := shift + shiftArray[0]
+      else
+         shift := shift + shiftArray[j+1]
+   done
+End

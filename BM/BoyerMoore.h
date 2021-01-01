@@ -10,9 +10,15 @@
 class BoyerMoore {
 public:
     int found = 0; // incremented if text is found
+    int needleLen = 0; // length of pattern
+    int haystackLen = 0; // length of text
+    int needlePlusOne = 0; // size of arrays in main function
+
     #define a 256 // macro for ASCII charset
 
-	int StringSearch(std::string needle, std::string haystack);
+    void FullSuffixMatch(int shiftArr[], int borderArr[], std::string needle);
+    void PartialSuffixMatch(int shiftArr[], const int borderArr[]);
+	int StringSearch(const std::string& needle, std::string& haystack);
 };
 
 
