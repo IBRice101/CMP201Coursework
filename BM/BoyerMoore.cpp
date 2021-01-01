@@ -8,7 +8,12 @@
 #include <iostream>
 #include "BoyerMoore.h"
 
-void BoyerMoore::FullSuffixMatch(int shiftArr[], int borderArr[], std::string needle) {
+using std::string;
+
+using std::cout;
+using std::endl;
+
+void BoyerMoore::FullSuffixMatch(int shiftArr[], int borderArr[], std::string needle) const {
     int i = needleLen;
     int j = needlePlusOne;
     borderArr[i] = j;
@@ -26,7 +31,7 @@ void BoyerMoore::FullSuffixMatch(int shiftArr[], int borderArr[], std::string ne
     }
 }
 
-void BoyerMoore::PartialSuffixMatch(int shiftArr[], const int borderArr[]) {
+void BoyerMoore::PartialSuffixMatch(int shiftArr[], const int borderArr[]) const {
     int n = needleLen;
     int j = borderArr[0];
 
@@ -40,7 +45,7 @@ void BoyerMoore::PartialSuffixMatch(int shiftArr[], const int borderArr[]) {
     }
 }
 
-int BoyerMoore::StringSearch(const std::string& needle, std::string& haystack) {
+void BoyerMoore::StringSearch(const string& needle, string& haystack) {
     needleLen = needle.length();
     haystackLen = haystack.length();
     needlePlusOne = needleLen + 1;
@@ -63,8 +68,9 @@ int BoyerMoore::StringSearch(const std::string& needle, std::string& haystack) {
         }
 
         if (j < 0) {
-            std::cout << "Pattern found at position: " << j << std::endl;
+            cout << "Pattern found at position: " << j << endl;
             shift += shiftArray[0];
+            found++;
         } else {
             shift += shiftArray[j + 1];
         }

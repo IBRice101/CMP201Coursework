@@ -9,11 +9,16 @@
 #include <iostream>
 #include "RabinKarp.h"
 
-void RabinKarp::StringSearch(const std::string& needle, const std::string& haystack) {
+using std::string;
+
+using std::cout;
+using std::endl;
+
+void RabinKarp::StringSearch(const string& needle, const string& haystack) {
 
     int needleLen = needle.length(); // m
     int haystackLen = haystack.length(); // n
-    int charIndex = 0; // character index
+    int charIndex; // character index
 
     // Hash variables (needle, haystack, needle+haystack, in that order)
     int needleHash = 0; int haystackHash = 0; int hash = 0;
@@ -37,7 +42,7 @@ void RabinKarp::StringSearch(const std::string& needle, const std::string& hayst
                 }
             }
             if (charIndex == needleLen) {
-                std::cout << "Pattern found at index: " << i << std::endl;
+                cout << "Pattern found at index: " << i << endl;
                 found++;
             }
         }

@@ -7,15 +7,25 @@
 #include "RK/RabinKarp.h"
 
 using namespace std::chrono;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+
+using std::string;
+
+using std::ifstream;
+
+using std::cout;
+using std::endl;
+using std::cin;
 
 BoyerMoore BM;
 RabinKarp RK;
 
-std::string fileOpen(const std::string& file) {
-    std::string text;
+string fileOpen(const string& file) {
+    string text;
     text = nullptr;
 
-    std::ifstream readFile(file);
+    ifstream readFile(file);
 
     getline(readFile, text);
 
@@ -25,19 +35,19 @@ std::string fileOpen(const std::string& file) {
 }
 
 int main() {
-    std::cout << "CMP 201 String Search Algorithm Comparison - 2020/1 Isaac Basque-Rice" << std::endl;
-    std::cout << "Boyer-Moore vs Rabin-Karp" << std::endl;
+    cout << "CMP 201 String Search Algorithm Comparison - 2020/1 Isaac Basque-Rice" << endl;
+    cout << "Boyer-Moore vs Rabin-Karp" << endl;
 
-    std::string needle; // pattern
-    std::string haystack; // searched text
-    std::string haystackLocation; // location of searched text if in a txt file
+    string needle; // pattern
+    string haystack; // searched text
+    string haystackLocation; // location of searched text if in a txt file
     haystackLocation = nullptr;
 
     char answer; // y or n, will assume y if no input
     bool fileInput; // if true user will define which text file they would like to search
 
-    std::cout << "Would you like to load data from a file? (y/n)";
-    std::cin >> answer;
+    cout << "Would you like to load data from a file? (y/n)";
+    cin >> answer;
 
     switch (answer) {
         case 'Y': case 'y':
@@ -54,25 +64,25 @@ int main() {
     }
 
     if (fileInput) {
-        std::cout << "which text file would you like to test on?" << std::endl;
-        std::cin >> haystackLocation;
+        cout << "which text file would you like to test on?" << endl;
+        cin >> haystackLocation;
 
         haystack = fileOpen(haystackLocation);
     } else {
-        std::cout << "Please input the text you would like to search: " << std::endl;
-        std:: cin >> haystack;
+        cout << "Please input the text you would like to search: " << endl;
+        cin >> haystack;
     }
 
-    std::cout << "What string would you like to search for?" << std::endl;
-    std::cin >> needle;
+    cout << "What string would you like to search for?" << endl;
+    cin >> needle;
 
     if (!haystackLocation.empty()) {
-        std::cout << "Searching for \"" << needle << "\" in " << haystackLocation << std::endl;
+        cout << "Searching for \"" << needle << "\" in " << haystackLocation << endl;
     } else {
-        std::cout << "Searching for \"" << needle << "\" in " << haystack << std::endl;
+        cout << "Searching for \"" << needle << "\" in " << haystack << endl;
     }
 
-    std::cout << "Boyer-Moore: " << std::endl;
+    cout << "Boyer-Moore: " << endl;
 
     auto BMStart = high_resolution_clock::now();
     BM.StringSearch(needle, haystack);
@@ -82,7 +92,7 @@ int main() {
     // print "Pattern \"" + needle + "\" found at positions " BoyerMoore.pos
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
-    std::cout << "Rabin-Karp" <<std::endl;
+    cout << "Rabin-Karp" <<endl;
 
     auto RKStart = high_resolution_clock::now();
     RK.StringSearch(needle, haystack);
@@ -92,6 +102,7 @@ int main() {
     // print "Pattern \"" + needle + "\" found at positions " RabinKarp.pos
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
-    std::cout << "BM \t : \t RK" << std::endl;
-    std::cout << BMDuration.count() << "ms \t : \t" << RKDuration.count() << "ms" << std::endl;
+    cout << "BM \t : \t RK" << endl;
+    cout << BMDuration.count() << "ms \t : \t" << RKDuration.count() << "ms" << endl;
+    cout << "Boyer-Moore found \"" << needle << "\" " << BM.found << "times" << endl;
 }

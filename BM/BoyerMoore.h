@@ -16,9 +16,9 @@ public:
 
     #define a 256 // macro for ASCII charset
 
-    void FullSuffixMatch(int shiftArr[], int borderArr[], std::string needle);
-    void PartialSuffixMatch(int shiftArr[], const int borderArr[]);
-	int StringSearch(const std::string& needle, std::string& haystack);
+    void FullSuffixMatch(int shiftArr[], int borderArr[], std::string needle) const;
+    void PartialSuffixMatch(int shiftArr[], const int borderArr[]) const;
+	void StringSearch(const std::string& needle, std::string& haystack);
 };
 
 
