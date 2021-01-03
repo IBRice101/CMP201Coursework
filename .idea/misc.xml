@@ -7,8 +7,5 @@
       <file path="$PROJECT_DIR$/RK" />
       <file path="$PROJECT_DIR$/Utils" />
     </sourceRoots>
-    <excludeRoots>
-      <file path="$PROJECT_DIR$/venv" />
-    </excludeRoots>
   </component>
 </project>

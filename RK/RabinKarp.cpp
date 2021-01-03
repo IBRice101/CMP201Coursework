@@ -3,7 +3,7 @@
 //
 
 // With thanks to Tutorialspoint for providing pseudocode for algorithm and
-// [NAME HERE] for providing inspiration for hash function
+// Adam Sampson for providing inspiration for hash function
 
 #include <string>
 #include <iostream>

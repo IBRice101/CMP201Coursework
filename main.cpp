@@ -1,8 +1,10 @@
+// With thanks to Adam Sampson of Abertay University for use of the load_file(), die() functions
+
 #include <iostream>
 #include <fstream>
 #include <chrono>
 
-#include "Utils/utilities.h"
+#include "utilities.h"
 #include "BM/BoyerMoore.h"
 #include "RK/RabinKarp.h"
 
@@ -21,18 +23,7 @@ using std::cin;
 BoyerMoore BM;
 RabinKarp RK;
 
-string fileOpen(const string& file) {
-    string text;
-    text = nullptr;
-
-    ifstream readFile(file);
-
-    getline(readFile, text);
-
-    readFile.close();
-
-    return text;
-}
+//TODO: Figure out how to use Adam's function to load file
 
 int main() {
     cout << "CMP 201 String Search Algorithm Comparison - 2020/1 Isaac Basque-Rice" << endl;
@@ -40,13 +31,11 @@ int main() {
 
     string needle; // pattern
     string haystack; // searched text
-    string haystackLocation; // location of searched text if in a txt file
-    haystackLocation = nullptr;
 
     char answer; // y or n, will assume y if no input
     bool fileInput; // if true user will define which text file they would like to search
 
-    cout << "Would you like to load data from a file? (y/n)";
+    cout << "Would you like to load data from a file? (y/n): ";
     cin >> answer;
 
     switch (answer) {
@@ -64,22 +53,26 @@ int main() {
     }
 
     if (fileInput) {
+        string haystackLocation; // location of searched text if in a txt file
         cout << "which text file would you like to test on?" << endl;
         cin >> haystackLocation;
 
-        haystack = fileOpen(haystackLocation);
+        //TODO: Load the file
+        load_file(haystackLocation, haystack);
     } else {
         cout << "Please input the text you would like to search: " << endl;
         cin >> haystack;
     }
 
+    if (haystack.empty()) {
+        die("there is no text to be searched");
+    }
+
     cout << "What string would you like to search for?" << endl;
     cin >> needle;
 
-    if (!haystackLocation.empty()) {
-        cout << "Searching for \"" << needle << "\" in " << haystackLocation << endl;
-    } else {
-        cout << "Searching for \"" << needle << "\" in " << haystack << endl;
+    if (needle.empty()) {
+        die("You must enter a string, try again");
     }
 
     cout << "Boyer-Moore: " << endl;
@@ -92,7 +85,7 @@ int main() {
     // print "Pattern \"" + needle + "\" found at positions " BoyerMoore.pos
     // Display diagram showing this (like the one adam wrote, found in Utils)
 
-    cout << "Rabin-Karp" <<endl;
+    cout << "Rabin-Karp: " <<endl;
 
     auto RKStart = high_resolution_clock::now();
     RK.StringSearch(needle, haystack);
@@ -104,5 +97,6 @@ int main() {
 
     cout << "BM \t : \t RK" << endl;
     cout << BMDuration.count() << "ms \t : \t" << RKDuration.count() << "ms" << endl;
-    cout << "Boyer-Moore found \"" << needle << "\" " << BM.found << "times" << endl;
+    cout << "Boyer-Moore found \"" << needle << "\" " << BM.found << " times" << endl;
+    cout << "Rabin-Karp found \"" << needle << "\" " << RK.found << " times" << endl;
 }
