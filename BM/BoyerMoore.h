@@ -13,9 +13,7 @@ public:
     int needleLen = 0; // length of pattern
     int haystackLen = 0; // length of text
 
-    bool inPattern[256];
-
-    #define a 256 // macro for ASCII charset
+    bool inPattern[256]{}; // represents 256 ascii chars, if inPattern[x] == true, ascii x is in pattern
 
 	void StringSearch(const std::string& needle, std::string& haystack);
 };

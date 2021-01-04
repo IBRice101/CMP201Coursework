@@ -23,8 +23,6 @@ using std::cin;
 BoyerMoore BM;
 RabinKarp RK;
 
-//TODO: Figure out how to use Adam's function to load file
-
 int main() {
     cout << "CMP 201 String Search Algorithm Comparison - 2020/1 Isaac Basque-Rice" << endl;
     cout << "Boyer-Moore vs Rabin-Karp" << endl;
@@ -56,8 +54,7 @@ int main() {
         string haystackLocation; // location of searched text if in a txt file
         cout << "which text file would you like to test on?" << endl;
         cin >> haystackLocation;
-
-        //TODO: Load the file
+        
         load_file(haystackLocation, haystack);
     } else {
         cout << "Please input the text you would like to search: " << endl;
@@ -82,18 +79,14 @@ int main() {
     auto BMStop = high_resolution_clock::now();
 
     auto BMDuration = duration_cast<milliseconds>(BMStop - BMStart);
-    // print "Pattern \"" + needle + "\" found at positions " BoyerMoore.pos
-    // Display diagram showing this (like the one adam wrote, found in Utils)
 
-    cout << "Rabin-Karp: " <<endl;
+    cout << "Rabin-Karp: " << endl;
 
     auto RKStart = high_resolution_clock::now();
     RK.StringSearch(needle, haystack);
     auto RKStop = high_resolution_clock::now();
 
     auto RKDuration = duration_cast<milliseconds>(RKStop - RKStart);
-    // print "Pattern \"" + needle + "\" found at positions " RabinKarp.pos
-    // Display diagram showing this (like the one adam wrote, found in Utils)
 
     cout << "BM \t : \t RK" << endl;
     cout << BMDuration.count() << "ms \t : \t" << RKDuration.count() << "ms" << endl;
