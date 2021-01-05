@@ -2,7 +2,8 @@
 // Created by Isaac on 20/11/2020.
 //
 
-// With inspiration from and thanks to Adam Sampson of Abertay University
+// With inspiration from and thanks to Adam Sampson of Abertay University and
+// Geeks for Geeks for the good suffix heuristic
 
 #include <iostream>
 #include "BoyerMoore.h"

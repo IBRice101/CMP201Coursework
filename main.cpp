@@ -87,8 +87,14 @@ int main() {
 
     auto RKDuration = duration_cast<milliseconds>(RKStop - RKStart);
 
-    cout << "BM \t : \t RK" << endl;
-    cout << BMDuration.count() << "ms \t : \t" << RKDuration.count() << "ms" << endl;
-    cout << "Boyer-Moore found \"" << needle << "\" " << BM.found << " times" << endl;
-    cout << "Rabin-Karp found \"" << needle << "\" " << RK.found << " times" << endl;
+    if (BM.found == 0 && RK.found == 0) {
+    	cout << "String not found in text" << endl;
+		cout << "BM \t : \t RK" << endl;
+		cout << BMDuration.count() << "ms \t : \t" << RKDuration.count() << "ms" << endl;
+    } else {
+		cout << "BM \t : \t RK" << endl;
+		cout << BMDuration.count() << "ms \t : \t" << RKDuration.count() << "ms" << endl;
+		cout << "Boyer-Moore found \"" << needle << "\" " << BM.found << " times" << endl;
+		cout << "Rabin-Karp found \"" << needle << "\" " << RK.found << " times" << endl;
+    }
 }
