@@ -18,36 +18,38 @@ void RabinKarp::StringSearch(const string& needle, const string& haystack) {
 
     int needleLen = needle.length(); // m
     int haystackLen = haystack.length(); // n
-    int charIndex; // character index
 
     // Hash variables (needle, haystack, needle+haystack, in that order)
-    int needleHash = 0; int haystackHash = 0; int hash = 0;
+    int needleHash = 0; int haystackHash = 0; int hash = 1;
+
+    int i;
 
     // hashing
-    for (int i = 0; i < needleLen - 1; ++i) {
-        hash = (hash * a) % prime;
+    for (i = 0; i < needleLen; ++i) {
+        hash = (hash * d) % prime;
     }
 
-    for (int i = 0; i < needleLen; ++i) {
-        needleHash = (a * needleHash + needle[i]) % prime;
-        haystackHash = (a * haystackHash + haystack[i]) % prime;
+    for (i = 0; i < needleLen; ++i) {
+        needleHash = (d * needleHash + needle[i]) % prime;
+        haystackHash = (d * haystackHash + haystack[i]) % prime;
     }
 
     // searching
-    for (int i = 0; i < (haystackLen - needleLen); ++i) {
+    for (i = 0; i < (haystackLen - needleLen); ++i) {
         if (needleHash == haystackHash) {
-            for (charIndex = 0; charIndex < needleLen - 1; ++charIndex) {
-                if (haystack[i + charIndex] != needle[charIndex]) {
+        	int j;
+            for (j = 0; j < needleLen; ++j) {
+                if (haystack[i + j] != needle[j]) {
                     break;
                 }
             }
-            if (charIndex == needleLen) {
-                cout << "Pattern found at index: " << i << endl;
-                found++;
+            if (j == needleLen) {
+				cout << "Found pattern \"" << needle << "\" at index: " << i << endl;
+				found++;
             }
         }
         if (i < (haystackLen - needleLen)) {
-            haystackHash = (a * (haystackHash - haystack[i] * hash) + haystack[i + needleLen]) % prime;
+            haystackHash = (d * (haystackHash - haystack[i] * hash) + haystack[i + needleLen]) % prime;
             if (haystackHash < 0) {
                 haystackHash = haystackHash + prime;
             }

@@ -10,8 +10,8 @@ class RabinKarp {
 public:
 
     int found = 0; // incremented if text is found
-    int prime = 127; //for hash function
-    #define a 256 // macro for ASCII charset
+    const int prime = 127; //for hash function
+    #define d 256 // macro for ASCII charset
 
 
     void StringSearch(const std::string& needle, const std::string& haystack);

@@ -20,7 +20,7 @@ void BoyerMoore::StringSearch(const string& needle, string& haystack) {
     for (bool & i : inPattern) {
         i = false;
     }
-    for (char c : needle) {
+    for (unsigned char c: needle) {
         inPattern[int(c)] = true;
     }
 

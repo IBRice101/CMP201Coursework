@@ -1,7 +1,6 @@
 // With thanks to Adam Sampson of Abertay University for use of the load_file(), die() functions
 
 #include <iostream>
-#include <fstream>
 #include <chrono>
 
 #include "utilities.h"
