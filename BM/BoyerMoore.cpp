@@ -13,8 +13,8 @@ using std::cout;
 using std::endl;
 
 void BoyerMoore::StringSearch(const string& needle, string& haystack) {
-    needleLen = needle.size();
-    haystackLen = haystack.size();
+    const int needleLen = needle.size();
+    const int haystackLen = haystack.size();
 
     // lookup table
     for (bool & i : inPattern) {
@@ -25,7 +25,7 @@ void BoyerMoore::StringSearch(const string& needle, string& haystack) {
     }
 
     for (int i = 0; i < (haystackLen - needleLen); ++i) {
-        if (!inPattern[int(haystack[i + needleLen - 1])]) {
+        if (!inPattern[int(haystack[i + needleLen])]) {
             i += needleLen - 1;
             continue;
         }
@@ -42,7 +42,7 @@ void BoyerMoore::StringSearch(const string& needle, string& haystack) {
             }
             if (check == needleLen)
             {
-                cout << "Found pattern \"" << needle << "\" at index: " << i << endl;
+                cout << "Boyer-Moore Found pattern \"" << needle << "\" at index: " << i << endl;
                 found++;
             }
         }
